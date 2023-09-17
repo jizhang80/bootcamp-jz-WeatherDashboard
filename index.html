@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./assets/css/output.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+
+  <body>
+    <header>
+        <div class="h-16 relative bg-gradient-to-r from-indigo-400 to-indigo-900">
+            <h1 class="text-3xl absolute inset-y-1/4 start-1/2 font-bold text-white">Weather Dashboard</h1>
+        </div>
+        
+    </header>
+    <main class="flex flex-row m-2">
+        <div class="basis-1/4 flex flex-col m-2">
+            <!--left side-->
+            <form class="flex flex-col my-2">
+                <!--search form-->
+                <label class="text-2xl font-bold my-2">Search for a City:</label>
+                <input type="text" id="search-input" class="my-2"/>
+                <button class="btn-blue">Search</button>
+            </form>
+            <hr class="my-4 ">
+            <ul id="city-list" class="my-2">
+                <!--city list here-->
+                <li><button class="btn-gray w-full">City-name</button></li>
+            </ul>
+        </div>
+        
+        <div class="basis-3/4 m-2">
+            <!--right side-->
+            <div id="city-info">
+                <!--city info and weather info-->
+                <div id="city-info-title">
+                    <span id="city-name">Atlanta</span>
+                    <span id="city-date">(9/13/2022)</span>
+                    <i id="weather-logo"></i>
+                </div>
+                <div id="city-temperature">Temp: </div>
+                <div id="city-wind">Wind: </div>
+                <div id="city-humidity">Humidity: </div>
+            </div>
+            <div id="days-forecast">
+                <!--5 days forecast-->
+                <div id="forecast-title">5-Day Forecast:</div>
+                <div id="forecast-cards">
+                    <div class="card">dfsfs</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/assets/js/script.js"></script>
+  </body>
+</html>
