@@ -254,7 +254,7 @@ function make_card(forecastData) {
 function make_icon(icon_code) {
    // return icon img element
    let img = document.createElement('img');
-   img.setAttribute('src', `http://openweathermap.org/img/w/${icon_code}.png`)
+   img.setAttribute('src', `https://openweathermap.org/img/w/${icon_code}.png`)
    return img;
 }
 
