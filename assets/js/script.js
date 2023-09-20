@@ -117,7 +117,7 @@ function searchCity(event) {
    event.preventDefault();
    cityWeatherObj.setWeather();
    // save to search record to localstorage
-   saveCity();
+   saveLocalStorage();
  }
 
 function showWeather() {
@@ -153,36 +153,27 @@ function showWeather5Days() {
    }
 }
 
-// call back function for get city info from user location
-const setLocByPosition = function(position) {
-   // show location weather
-   console.log(position)
-   cityWeatherObj.setCityLoc(position.coords.latitude, position.coords.longitude);
-   cityWeatherObj.setWeather();
-}
-
-const errorCallback = (error) => {
-   // show ottawa weather
-   cityWeatherObj.setWeather();
-}
-
 // start here
 loadCity(); // load btns
+cityWeatherObj.setWeather();
 
 //block input enter keyboard
-let inputEl = document.getElementById("search-input")
-inputEl.addEventListener('keypress', function(event) {
-   if (event.keyCode == 13) {
+let form = document.getElementById("search-form")
+form.addEventListener('keypress', function(event) {
+   if (event.code === "Enter") {
          event.preventDefault();
      }
  });
-// get city info from user location, if user agree
-navigator.geolocation.getCurrentPosition(setLocByPosition, errorCallback);
 
 // get city info by input
 // after input the city name, then select the city from dropdown list, 
 // then the city object will be created.
 let input = document.getElementById('search-input');
+input.addEventListener('keypress', function(event) {
+   if (event.code === "Enter") {
+         event.preventDefault();
+     }
+ });
 let autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
 function setCityFromSearch() {
    let place = autocomplete.getPlace();
@@ -205,7 +196,12 @@ citySearchHistoryZone.addEventListener('click', loadCityFromBtn)
 
 function loadCityFromBtn(event) {
    const btn =event.target;
-   cityWeatherObj.setCity(btn.name, btn.csc, btn.lat, btn.lon)
+   console.log(btn, btn.dataset.name, btn.dataset.csc, btn.dataset.lat, btn.dataset.lon)
+   cityWeatherObj.setCity(
+      btn.dataset.name, 
+      btn.dataset.csc, 
+      btn.dataset.lat, 
+      btn.dataset.lon)
    cityWeatherObj.setWeather();
 }
 
@@ -267,19 +263,17 @@ function convertKToF(K) {
    return Math.round((9/5*(K-273)+32)*100)/100;
 }
 
-function saveCity() {
-   // create history btn and save city to localstorage
-   const cityList = document.getElementById('city-list');
-   const liEl = document.createElement('li');
-   liEl.className = 'my-2';
-   liEl.appendChild(make_btn(cityWeatherObj.city_name, cityWeatherObj.city_csc, cityWeatherObj.lat, cityWeatherObj.lon));
-   cityList.appendChild(liEl);
-   saveLocalStorage();
-}
-
 function saveLocalStorage() {
    let storageList = JSON.parse(localStorage.getItem(STORAGE_KEY));
-   if (!storageList) {storageList=[];}
+   if (!storageList) {
+      storageList=[];
+   } else {
+      for (let c of storageList) {
+         if (c.city_csc === cityWeatherObj.city_csc) {
+            return; // if already has the city
+         }
+      }
+   }
    storageList.push({
       city_name: cityWeatherObj.city_name,
       city_csc: cityWeatherObj.city_csc,
@@ -287,11 +281,17 @@ function saveLocalStorage() {
       lon: cityWeatherObj.lon
    })
    localStorage.setItem(STORAGE_KEY, JSON.stringify(storageList));
+
+   // create history btn
+   const cityList = document.getElementById('city-list');
+   const liEl = document.createElement('li');
+   liEl.className = 'my-2';
+   liEl.appendChild(make_btn(cityWeatherObj.city_name, cityWeatherObj.city_csc, cityWeatherObj.lat, cityWeatherObj.lon));
+   cityList.appendChild(liEl);
 }
 
 function loadCity() {
    let cityList = JSON.parse(localStorage.getItem(STORAGE_KEY));
-   console.log('load', cityList)
    if (!cityList) return;
    const cityListEl = document.getElementById('city-list');
    for (let i = cityList.length; i > 0; i--) {
