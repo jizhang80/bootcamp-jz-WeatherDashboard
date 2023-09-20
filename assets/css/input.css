@@ -35,7 +35,7 @@
 
     /* card component define */
     .weather-card {
-        @apply box-border h-64 w-56 p-4 my-4 bg-sky-900 text-white;
+        @apply box-border h-64 w-48 p-4 my-4 bg-sky-900 text-white;
     }
 
     .card-title {
