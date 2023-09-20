@@ -2,15 +2,17 @@
 
 ## live link
 
-TODO
+[https://jizhang80.github.io/bootcamp-jz-WeatherDashboard/](https://jizhang80.github.io/bootcamp-jz-WeatherDashboard/)
 
 ## function description
 
-TODO
+1. input city name, choose city info from drop down list. (Google Map API)
+2. click history city button, display the city weather.
 
 ## screenshot
 
-TODO
+![Main screen](./assets/img/main.jpg)
+![search city screen](./assets/img/search_city.jpg)
 
 ## user story
 ```
