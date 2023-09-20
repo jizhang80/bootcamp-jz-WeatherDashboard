@@ -196,7 +196,6 @@ citySearchHistoryZone.addEventListener('click', loadCityFromBtn)
 
 function loadCityFromBtn(event) {
    const btn =event.target;
-   console.log(btn, btn.dataset.name, btn.dataset.csc, btn.dataset.lat, btn.dataset.lon)
    cityWeatherObj.setCity(
       btn.dataset.name, 
       btn.dataset.csc, 
