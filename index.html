@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/output.css">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7BEyX9CbQVw-8cy9Q8DF4p1O1UOYMLgE&libraries=places&callback=Function.prototype"></script>
   </head>
 
   <body>
     <header>
-        <div class="h-16 relative bg-gradient-to-r from-indigo-400 to-indigo-900">
-            <h1 class="text-3xl absolute inset-y-1/4 start-1/2 font-bold text-white">Weather Dashboard</h1>
+        <div class="header-bg">
+            <h1 class="title-0 absolute inset-y-1/4 start-1/2">Weather Dashboard</h1>
         </div>
         
     </header>
@@ -20,40 +21,47 @@
             <!--left side-->
             <form class="flex flex-col my-2">
                 <!--search form-->
-                <label class="text-2xl font-bold my-2">Search for a City:</label>
+                <label class="title-1 my-2">Search for a City:</label>
                 <input type="text" id="search-input" class="my-2"/>
-                <button class="btn-blue">Search</button>
+                <button id="city_search" class="btn-blue">Search</button>
             </form>
             <hr class="my-4 ">
             <ul id="city-list" class="my-2">
                 <!--city list here-->
-                <li><button class="btn-gray w-full">City-name</button></li>
+                <!-- <li><button class="btn-gray w-full">City-name</button></li> -->
             </ul>
         </div>
         
         <div class="basis-3/4 m-2">
             <!--right side-->
-            <div id="city-info">
-                <!--city info and weather info-->
-                <div id="city-info-title">
-                    <span id="city-name">Atlanta</span>
-                    <span id="city-date">(9/13/2022)</span>
-                    <i id="weather-logo"></i>
+            <div id="city-info" class="border-solid border-2 border-slate-400 m-4">
+                <!--details city info and weather info-->
+                <div id="city-info-title" class="m-2 my-4 flex flex-row">
+                    <span id="city-name" class="title-1 mx-2">Ottawa</span>
+                    <span id="city-date" class="title-1 mx-2"></span>
+                    <span id="weather-icon" class="mx-2"></span>
                 </div>
-                <div id="city-temperature">Temp: </div>
-                <div id="city-wind">Wind: </div>
-                <div id="city-humidity">Humidity: </div>
+                <div id="city-temperature" class="m-2 my-4">Temp: </div>
+                <div id="city-wind" class="m-2 my-4">Wind: </div>
+                <div id="city-humidity" class="m-2 my-4">Humidity: </div>
             </div>
-            <div id="days-forecast">
+            <div id="days-forecast" class="m-4">
                 <!--5 days forecast-->
-                <div id="forecast-title">5-Day Forecast:</div>
-                <div id="forecast-cards">
-                    <div class="card">dfsfs</div>
+                <div id="forecast-title" class="title-2">5-Day Forecast:</div>
+                <div id="forecast-cards" class="flex flex-row flex-wrap">
+                    <div class="weather-card">
+                        <div class="card-title">9/14/2022</div>
+                        <div class="card-icon"><i>icon</i></div>
+                        <div class="card-temperature">temperature</div>
+                        <div class="card-wind">wind</div>
+                        <div class="card-humidity">humidity</div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="/assets/js/script.js"></script>
   </body>
 </html>
