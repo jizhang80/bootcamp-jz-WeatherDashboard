@@ -300,3 +300,5 @@ function loadCity() {
       cityListEl.appendChild(liEl);
    }
 }
+
+console.log()
